@@ -1,24 +1,9 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-import gfootball.env as football_env
-import tensorflow as tf
-import multiprocessing
-import os
-
-from baselines import logger
-from baselines.bench import monitor
-from baselines.common.vec_env.subproc_vec_env import SubprocVecEnv
-from baselines.ppo2 import ppo2
-import gfootball.env as football_env
-import tensorflow as tf
-from rl_coach.filters.filter import NoInputFilter, NoOutputFilter
 
 from rl_coach.base_parameters import Parameters
-
-from rl_coach.environments.environment import Environment
-
-
+from rl_coach.filters.filter import NoInputFilter, NoOutputFilter
 
 
 class GFootballEnvParameter(Parameters):
@@ -32,7 +17,7 @@ class GFootballEnvParameter(Parameters):
         self.frame_skip = 4
         self.seed = None
         self.human_control = False
-        self.custom_reward_threshold = None
+        self.custom_reward_threshold = 1
 
         self.experiment_path = None
 

@@ -351,7 +351,7 @@ class Environment(EnvironmentInterface):
         :param force_environment_reset: forces environment reset even when the game did not end
         :return: A dictionary containing the observation, reward, done flag, action and measurements
         """
-
+        print(self.is_rendered)
         self._restart_environment_episode(force_environment_reset)
         self.last_episode_time = time.time()
 

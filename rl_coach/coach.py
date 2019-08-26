@@ -732,9 +732,12 @@ class CoachLauncher(object):
         for task_index in range(1, args.num_workers):
             workers.append(start_distributed_task("worker", task_index))
 
+        print("start of creating evaluation worker")
+
         # evaluation worker
         if args.evaluation_worker or args.render:
             evaluation_worker = start_distributed_task("worker", args.num_workers, evaluation_worker=True)
+        print("end of creating evaluation worker")
 
         # wait for all workers
         [w.join() for w in workers]

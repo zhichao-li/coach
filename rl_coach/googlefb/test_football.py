@@ -1,26 +1,24 @@
-from rl_coach.agents.actor_critic_agent import ActorCriticAlgorithmParameters, ActorCriticAgentParameters
-
-from rl_coach.coach import CoachLauncher
-
-from rl_coach.agents.dqn_agent import DQNAgentParameters
-
-from rl_coach.agents.clipped_ppo_agent import ClippedPPOAgentParameters
-from rl_coach.agents.ppo_agent import PPOAlgorithmParameters, PPOAgentParameters
-from rl_coach.agents.rainbow_dqn_agent import RainbowDQNNetworkParameters, RainbowDQNAgentParameters
+from rl_coach.agents.actor_critic_agent import ActorCriticAgentParameters
 from rl_coach.base_parameters import VisualizationParameters
-from rl_coach.core_types import EnvironmentSteps
+from rl_coach.coach import CoachLauncher
 from rl_coach.environments.gym_environment import GymVectorEnvironment
 from rl_coach.googlefb.GFootballEnvParameter import GFootballEnvParameter
 from rl_coach.graph_managers.basic_rl_graph_manager import BasicRLGraphManager
-from rl_coach.graph_managers.graph_manager import SimpleSchedule, HumanPlayScheduleParameters
+from rl_coach.graph_managers.graph_manager import SimpleSchedule
+
+env_params = GFootballEnvParameter(
+        level='rl_coach.googlefb.GFEnvironment:GFEnvironment')
+
+env_params.additional_simulator_parameters["env_name"] = "academy_run_to_score_with_keeper"
+
 
 graph_manager = BasicRLGraphManager(
     # agent_params= RainbowDQNAgentParameters(),
     # agent_params=ClippedPPOAgentParameters(),
-    agent_params= PPOAgentParameters(), #ActorCriticAgentParameters(), # PPOAgentParameters(), #DQNAgentParameters(),
+    agent_params= ActorCriticAgentParameters(), # PPOAgentParameters(), #DQNAgentParameters(),
     # DQNAgentParameters(),
-    env_params=GFootballEnvParameter(
-        level='rl_coach.googlefb.GFEnvironment:GFEnvironment'),
+    env_params=env_params,
+    # env_params=GymVectorEnvironment(level='CartPole-v0'),
     vis_params=VisualizationParameters(render=False, native_rendering=False),
     # schedule_params=HumanPlayScheduleParameters()
     schedule_params=SimpleSchedule()
@@ -29,8 +27,8 @@ graph_manager = BasicRLGraphManager(
 # coachLauncher = CoachLauncher()
 #
 # parser = coachLauncher.get_argument_parser()
-# # args = parser.parse_args()
-# args = coachLauncher.get_config_args(parser) # This is require to enrich the checkpoint dir
+# args = parser.parse_args()
+# # args = coachLauncher.get_config_args(parser) # This is require to enrich the checkpoint dir
 # coachLauncher.run_graph_manager(graph_manager, args)
 
 # coachLauncher.launch()

@@ -86,9 +86,22 @@ def create_monitored_session(target: tf.train.Server, task_index: int,
     :return: the session to use for the run
     """
     # we chose the first task to be the chief
+    print("task_index: {}".format(task_index))
     is_chief = task_index == 0
 
     # Create the monitored session
+    # return tf.Session()
+    # sess = tf.train.MonitoredTrainingSession(
+    #     master=target,
+    #     is_chief=is_chief,
+    #     hooks=[],
+    #     checkpoint_dir="/tmp/coach",
+    #     save_checkpoint_secs=checkpoint_save_secs,
+    #     config=config,
+    #     max_wait_secs=30,
+    #     log_step_count_steps=0  # disable logging of steps to avoid TF warning during inference
+    # )
+
     sess = tf.train.MonitoredTrainingSession(
         master=target,
         is_chief=is_chief,

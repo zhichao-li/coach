@@ -31,6 +31,7 @@ class GFEnvironment(Wrapper):
         """Creates gfootball environment."""
         log_dir = logger.get_dir()
         print("log dir: %s" % log_dir)
+        print("rewards: %s" % rewards)
         env = football_env.create_environment(
             # env_name="academy_empty_goal_close", stacked=('stacked' in state),
             # env_name="academy_corner", stacked=('stacked' in state),

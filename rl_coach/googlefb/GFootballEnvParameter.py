@@ -19,7 +19,7 @@ class GFootballEnvParameter(GymEnvironmentParameters):
         self.frame_skip = 4
 
         self.human_control = False
-        self.custom_reward_threshold = 1
+        # self.custom_reward_threshold = 1
         self.experiment_path = None
 
         # google football environment parameters
